@@ -2,7 +2,6 @@ package com.grupo03.Lambda_Voyage.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.Set;
 
 @Entity(name = "customer")
@@ -45,7 +44,7 @@ public class CustomerEntity {
     @EqualsAndHashCode.Exclude
     @OneToMany(
             cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY,
             orphanRemoval = true,
             mappedBy = "customer"
     )
