@@ -156,17 +156,17 @@ Nuestro equipo está formado por profesionales con experiencia en tecnología, t
 | **Respuesta** | Verificación y autorización exitosa del usuario o denegación en caso de falla en la autenticación |
 | **Medida de la respuesta** | Tasa de éxito en la autenticación en nuevos dispositivos (99.9%) |
 
-| **Escenario de atributo de calidad** | ACS004 |
-| --- | --- |
-| **Atributo de calidad** | Seguridad |
-| **Nombre** | Seguridad frente a Ataque "Man-in-the-Middle" |
-| **Fuente del estímulo** | Atacante que intenta realizar un ataque "Man-in-the-Middle" |
-| **Estímulo** | Intento de interceptar y manipular las comunicaciones entre un usuario y la página web LambdaVoyage |
-| **Entorno** | Comunicación entre el usuario y la página web LambdaVoyage |
-| **Artefacto** | Mecanismos de seguridad y protocolos de cifrado utilizados en la comunicación |
-| **Respuesta** | Detección y prevención del ataque "Man-in-the-Middle"
- |
-| **Medida de la respuesta** | Tiempo promedio necesario para detectar y mitigar un ataque en 20 segundos |
+| **Escenario de atributo de calidad** | ACS004                                                                                              |
+|--------------------------------------|-----------------------------------------------------------------------------------------------------|
+| **Atributo de calidad**              | Seguridad                                                                                           |
+| **Nombre**                           | Seguridad frente a Ataque "Man-in-the-Middle"                                                       |
+| **Fuente del estímulo**              | Atacante que intenta realizar un ataque "Man-in-the-Middle"                                         |
+| **Estímulo**                         | Intento de interceptar y manipular las comunicaciones entre un usuario y la página web LambdaVoyage |
+| **Entorno**                          | Comunicación entre el usuario y la página web LambdaVoyage                                          |
+| **Artefacto**                        | Mecanismos de seguridad y protocolos de cifrado utilizados en la comunicación                       |
+| **Respuesta**                        | Detección y prevención del ataque "Man-in-the-Middle"                                               |
+|
+| **Medida de la respuesta**           | Tiempo promedio necesario para detectar y mitigar un ataque en 20 segundos                          |
 
 | **Escenario de atributo de calidad** | ACS005 |
 | --- | --- |
