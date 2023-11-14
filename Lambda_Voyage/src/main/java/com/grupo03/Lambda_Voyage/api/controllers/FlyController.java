@@ -3,6 +3,8 @@ package com.grupo03.Lambda_Voyage.api.controllers;
 import com.grupo03.Lambda_Voyage.api.models.responses.FlyResponse;
 import com.grupo03.Lambda_Voyage.infraestructure.abstract_services.IFlyService;
 import com.grupo03.Lambda_Voyage.util.enums.SortType;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +17,12 @@ import java.util.Set;
 @RestController
 @RequestMapping(path = "fly")
 @AllArgsConstructor
+@Tag(name = "Fly")
 public class FlyController {
 
     private final IFlyService flyService;
 
+    @Operation(summary = "Retrieve a paginated list of flights that can be sorted.")
     @GetMapping
     public ResponseEntity<Page<FlyResponse>> getAll(
             @RequestParam Integer page,
@@ -30,6 +34,7 @@ public class FlyController {
 
     }
 
+    @Operation(summary = "Retrieve a list of flights with prices less than the specified value.")
     @GetMapping(path = "less_price")
     public ResponseEntity<Set<FlyResponse>> getLessPrice(
             @RequestParam BigDecimal price){
@@ -38,6 +43,7 @@ public class FlyController {
 
     }
 
+    @Operation(summary = "Retrieve a list of flights with prices within the specified range.")
     @GetMapping(path = "between_price")
     public ResponseEntity<Set<FlyResponse>> getBetweenPrice(
             @RequestParam BigDecimal min,
@@ -47,6 +53,7 @@ public class FlyController {
 
     }
 
+    @Operation(summary = "Retrieve a list of flights between the specified origin and destination.")
     @GetMapping(path = "origin_destiny")
     public ResponseEntity<Set<FlyResponse>> getByOriginDestiny(
             @RequestParam String origin,

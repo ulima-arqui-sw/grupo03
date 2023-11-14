@@ -3,6 +3,8 @@ package com.grupo03.Lambda_Voyage.api.controllers;
 import com.grupo03.Lambda_Voyage.api.models.responses.HotelResponse;
 import com.grupo03.Lambda_Voyage.infraestructure.abstract_services.IHotelService;
 import com.grupo03.Lambda_Voyage.util.enums.SortType;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +17,12 @@ import java.util.Set;
 @RestController
 @RequestMapping(path = "hotel")
 @AllArgsConstructor
+@Tag(name = "Hotel")
 public class HotelController {
 
     private final IHotelService hotelService;
 
+    @Operation(summary = "Retrieve a paginated list of hotels that can be sorted.")
     @GetMapping
     public ResponseEntity<Page<HotelResponse>> getAll(
             @RequestParam Integer page,
@@ -30,6 +34,8 @@ public class HotelController {
 
     }
 
+
+    @Operation(summary = "Retrieve a list of hotels with prices less than the specified value.")
     @GetMapping(path = "less_price")
     public ResponseEntity<Set<HotelResponse>> getLessPrice(
             @RequestParam BigDecimal price){
@@ -38,6 +44,7 @@ public class HotelController {
 
     }
 
+    @Operation(summary = "Retrieve a list of hotels with prices within the specified range.")
     @GetMapping(path = "between_price")
     public ResponseEntity<Set<HotelResponse>> getBetweenPrice(
             @RequestParam BigDecimal min,
@@ -47,6 +54,7 @@ public class HotelController {
 
     }
 
+    @Operation(summary = "Retrieve a list of hotels with the specified rating (1 to 4).")
     @GetMapping(path = "rating")
     public ResponseEntity<Set<HotelResponse>> getByRating(
             @RequestParam Integer rating){
