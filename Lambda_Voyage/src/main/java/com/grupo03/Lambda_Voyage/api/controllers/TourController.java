@@ -3,6 +3,7 @@ package com.grupo03.Lambda_Voyage.api.controllers;
 import com.grupo03.Lambda_Voyage.api.models.request.TourRequest;
 import com.grupo03.Lambda_Voyage.api.models.responses.TourResponse;
 import com.grupo03.Lambda_Voyage.infraestructure.abstract_services.ITourService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class TourController {
     private final ITourService tourService;
 
     @PostMapping
-    public ResponseEntity<TourResponse> post(@RequestBody TourRequest request){
+    public ResponseEntity<TourResponse> post(@Valid @RequestBody TourRequest request){
         return ResponseEntity.ok(this.tourService.create(request));
     }
 

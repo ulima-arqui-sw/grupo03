@@ -8,6 +8,7 @@ import com.grupo03.Lambda_Voyage.domain.repositories.CustomerRepository;
 import com.grupo03.Lambda_Voyage.domain.repositories.FlyRepository;
 import com.grupo03.Lambda_Voyage.domain.repositories.TicketRepository;
 import com.grupo03.Lambda_Voyage.infraestructure.abstract_services.ITicketService;
+import com.grupo03.Lambda_Voyage.infraestructure.helpers.BlackListHelper;
 import com.grupo03.Lambda_Voyage.infraestructure.helpers.CustomerHelper;
 import com.grupo03.Lambda_Voyage.util.LambdaVoyageUtil;
 import lombok.AllArgsConstructor;
@@ -31,8 +32,10 @@ public class TicketService implements ITicketService {
     private final CustomerRepository customerRepository;
     private final TicketRepository ticketRepository;
     private final CustomerHelper customerHelper;
+    private BlackListHelper blackListHelper;
     @Override
     public TicketResponse create(TicketRequest request) {
+        blackListHelper.isInBlackListCustomer(request.getIdClient());
         var fly = flyRepository.findById(request.getIdFly()).orElseThrow();
         var customer = customerRepository.findById(request.getIdClient()).orElseThrow();
 

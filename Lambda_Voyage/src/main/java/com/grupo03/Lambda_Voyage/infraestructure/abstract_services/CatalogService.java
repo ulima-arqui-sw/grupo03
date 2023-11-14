@@ -1,6 +1,6 @@
 package com.grupo03.Lambda_Voyage.infraestructure.abstract_services;
 
-import com.grupo03.Lambda_Voyage.util.SortType;
+import com.grupo03.Lambda_Voyage.util.enums.SortType;
 import org.springframework.data.domain.Page;
 
 import java.math.BigDecimal;
