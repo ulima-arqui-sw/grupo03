@@ -2,7 +2,7 @@ package com.grupo03.Lambda_Voyage.api.controllers;
 
 import com.grupo03.Lambda_Voyage.api.models.responses.HotelResponse;
 import com.grupo03.Lambda_Voyage.infraestructure.abstract_services.IHotelService;
-import com.grupo03.Lambda_Voyage.util.SortType;
+import com.grupo03.Lambda_Voyage.util.enums.SortType;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;

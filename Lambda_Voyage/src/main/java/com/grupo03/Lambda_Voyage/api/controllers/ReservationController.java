@@ -3,6 +3,7 @@ package com.grupo03.Lambda_Voyage.api.controllers;
 import com.grupo03.Lambda_Voyage.api.models.request.ReservationRequest;
 import com.grupo03.Lambda_Voyage.api.models.responses.ReservationResponse;
 import com.grupo03.Lambda_Voyage.infraestructure.abstract_services.IReservationService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class ReservationController {
     private final IReservationService reservationService;
 
     @PostMapping
-    public ResponseEntity<ReservationResponse> post(@RequestBody ReservationRequest request){
+    public ResponseEntity<ReservationResponse> post(@Valid @RequestBody ReservationRequest request){
         return ResponseEntity.ok(reservationService.create(request));
     }
 
@@ -30,7 +31,7 @@ public class ReservationController {
         return ResponseEntity.ok(reservationService.read(id));
     }
     @PutMapping(path = "{id}")
-    public ResponseEntity<ReservationResponse> put(@PathVariable UUID id, @RequestBody ReservationRequest request) {
+    public ResponseEntity<ReservationResponse> put(@Valid @PathVariable UUID id, @RequestBody ReservationRequest request) {
         return ResponseEntity.ok(this.reservationService.update(request,id));
     }
     @DeleteMapping(path = "{id}")

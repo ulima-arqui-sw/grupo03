@@ -1,6 +1,6 @@
 package com.grupo03.Lambda_Voyage.domain.entities;
 
-import com.grupo03.Lambda_Voyage.util.Aeroline;
+import com.grupo03.Lambda_Voyage.util.enums.Aeroline;
 import jakarta.persistence.*;
 import lombok.*;
 

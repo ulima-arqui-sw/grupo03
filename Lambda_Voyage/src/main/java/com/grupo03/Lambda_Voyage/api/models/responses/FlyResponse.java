@@ -1,6 +1,6 @@
 package com.grupo03.Lambda_Voyage.api.models.responses;
 
-import com.grupo03.Lambda_Voyage.util.Aeroline;
+import com.grupo03.Lambda_Voyage.util.enums.Aeroline;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

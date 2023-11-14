@@ -4,7 +4,7 @@ import com.grupo03.Lambda_Voyage.api.models.responses.FlyResponse;
 import com.grupo03.Lambda_Voyage.domain.entities.FlyEntity;
 import com.grupo03.Lambda_Voyage.domain.repositories.FlyRepository;
 import com.grupo03.Lambda_Voyage.infraestructure.abstract_services.IFlyService;
-import com.grupo03.Lambda_Voyage.util.SortType;
+import com.grupo03.Lambda_Voyage.util.enums.SortType;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
