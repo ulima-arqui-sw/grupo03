@@ -8,6 +8,7 @@ import com.grupo03.Lambda_Voyage.domain.repositories.CustomerRepository;
 import com.grupo03.Lambda_Voyage.domain.repositories.HotelRepository;
 import com.grupo03.Lambda_Voyage.domain.repositories.ReservationRepository;
 import com.grupo03.Lambda_Voyage.infraestructure.abstract_services.IReservationService;
+import com.grupo03.Lambda_Voyage.infraestructure.helpers.ApiCurrencyConnectorHelper;
 import com.grupo03.Lambda_Voyage.infraestructure.helpers.BlackListHelper;
 import com.grupo03.Lambda_Voyage.infraestructure.helpers.CustomerHelper;
 import com.grupo03.Lambda_Voyage.util.exceptions.IdNotFoundException;
@@ -20,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Currency;
 import java.util.UUID;
 
 
@@ -34,7 +36,8 @@ public class ReservationService implements IReservationService {
     private final CustomerRepository customerRepository;
     private final ReservationRepository reservationRepository;
     private final CustomerHelper customerHelper;
-    private BlackListHelper blackListHelper;
+    private final BlackListHelper blackListHelper;
+    private final ApiCurrencyConnectorHelper currencyConnectorHelper;
 
     @Override
     public ReservationResponse create(ReservationRequest request) {
@@ -87,9 +90,13 @@ public class ReservationService implements IReservationService {
     }
 
     @Override
-    public BigDecimal findPrice(Long flyId) {
+    public BigDecimal findPrice(Long flyId, Currency currency) {
         var hotel = hotelRepository.findById(flyId).orElseThrow(()-> new IdNotFoundException("hotel"));
-        return hotel.getPrice().add(hotel.getPrice().multiply(charges_price_percentage));
+        var priceInDollars = hotel.getPrice().add(hotel.getPrice().multiply(charges_price_percentage));
+        if (currency.equals(Currency.getInstance("USD"))) return priceInDollars;
+        var currencyDTO = this.currencyConnectorHelper.getCurrency(currency);
+        log.info("API Currency in {}, response: {}",currencyDTO.getExchangeDate().toString(), currencyDTO.getRates());
+        return priceInDollars.multiply(currencyDTO.getRates().get(currency));
     }
     private ReservationResponse entityToResponse(ReservationEntity entity){
         var response = new ReservationResponse();

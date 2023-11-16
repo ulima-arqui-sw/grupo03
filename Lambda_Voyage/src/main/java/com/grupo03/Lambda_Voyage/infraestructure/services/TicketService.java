@@ -8,9 +8,12 @@ import com.grupo03.Lambda_Voyage.domain.repositories.CustomerRepository;
 import com.grupo03.Lambda_Voyage.domain.repositories.FlyRepository;
 import com.grupo03.Lambda_Voyage.domain.repositories.TicketRepository;
 import com.grupo03.Lambda_Voyage.infraestructure.abstract_services.ITicketService;
+import com.grupo03.Lambda_Voyage.infraestructure.helpers.ApiCurrencyConnectorHelper;
 import com.grupo03.Lambda_Voyage.infraestructure.helpers.BlackListHelper;
 import com.grupo03.Lambda_Voyage.infraestructure.helpers.CustomerHelper;
 import com.grupo03.Lambda_Voyage.util.LambdaVoyageUtil;
+import com.grupo03.Lambda_Voyage.util.enums.Tables;
+import com.grupo03.Lambda_Voyage.util.exceptions.IdNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -20,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Currency;
 import java.util.UUID;
 
 @Transactional
@@ -33,6 +37,8 @@ public class TicketService implements ITicketService {
     private final TicketRepository ticketRepository;
     private final CustomerHelper customerHelper;
     private BlackListHelper blackListHelper;
+    private final ApiCurrencyConnectorHelper currencyConnectorHelper;
+
     @Override
     public TicketResponse create(TicketRequest request) {
         blackListHelper.isInBlackListCustomer(request.getIdClient());
@@ -84,10 +90,15 @@ public class TicketService implements ITicketService {
     }
 
     @Override
-    public BigDecimal findPrice(Long flyId) {
-        var fly = this.flyRepository.findById(flyId).orElseThrow();
-        return fly.getPrice().add(fly.getPrice().multiply(charger_price_percentage));
+    public BigDecimal findPrice(Long flyId, Currency currency) {
+        var fly = this.flyRepository.findById(flyId).orElseThrow(() -> new IdNotFoundException(Tables.fly.name()));
+        if (currency.equals(Currency.getInstance("USD"))) return fly.getPrice().add(fly.getPrice().multiply(charger_price_percentage));
+        var currencyDTO = this.currencyConnectorHelper.getCurrency(currency);
+        log.info("API currency in {}, response: {}", currencyDTO.getExchangeDate().toString(), currencyDTO.getRates());
+        return fly.getPrice().add(fly.getPrice().multiply(charger_price_percentage)).multiply(currencyDTO.getRates().get(currency));
     }
+
+
     private TicketResponse entityToResponse(TicketEntity entity){
         var response = new TicketResponse();
         BeanUtils.copyProperties(entity,response);
