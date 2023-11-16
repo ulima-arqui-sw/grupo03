@@ -5,13 +5,14 @@ import com.grupo03.Lambda_Voyage.domain.entities.FlyEntity;
 import com.grupo03.Lambda_Voyage.domain.repositories.FlyRepository;
 import com.grupo03.Lambda_Voyage.infraestructure.abstract_services.IFlyService;
 import com.grupo03.Lambda_Voyage.util.enums.SortType;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.math.BigDecimal;
 import java.util.Set;
@@ -19,10 +20,15 @@ import java.util.stream.Collectors;
 
 @Transactional(readOnly = true)
 @Service
-@AllArgsConstructor
 public class FlyService implements IFlyService {
 
     private final FlyRepository flyRepository;
+    private final WebClient webClient;
+
+    public FlyService(FlyRepository flyRepository,@Qualifier(value = "base") WebClient webClient) {
+        this.flyRepository = flyRepository;
+        this.webClient = webClient;
+    }
 
     @Override
     public Page<FlyResponse> readAll(Integer page, Integer size, SortType sortType) {
