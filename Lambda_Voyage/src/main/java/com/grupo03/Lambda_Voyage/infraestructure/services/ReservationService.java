@@ -11,6 +11,8 @@ import com.grupo03.Lambda_Voyage.infraestructure.abstract_services.IReservationS
 import com.grupo03.Lambda_Voyage.infraestructure.helpers.ApiCurrencyConnectorHelper;
 import com.grupo03.Lambda_Voyage.infraestructure.helpers.BlackListHelper;
 import com.grupo03.Lambda_Voyage.infraestructure.helpers.CustomerHelper;
+import com.grupo03.Lambda_Voyage.infraestructure.helpers.EmailHelper;
+import com.grupo03.Lambda_Voyage.util.enums.Tables;
 import com.grupo03.Lambda_Voyage.util.exceptions.IdNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +24,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Currency;
+import java.util.Objects;
 import java.util.UUID;
 
 
@@ -38,7 +41,7 @@ public class ReservationService implements IReservationService {
     private final CustomerHelper customerHelper;
     private final BlackListHelper blackListHelper;
     private final ApiCurrencyConnectorHelper currencyConnectorHelper;
-
+    private final EmailHelper emailHelper;
     @Override
     public ReservationResponse create(ReservationRequest request) {
         blackListHelper.isInBlackListCustomer(request.getIdClient());
@@ -58,6 +61,7 @@ public class ReservationService implements IReservationService {
 
         var reservationPersisted = reservationRepository.save(reservationToPersist);
         this.customerHelper.increase(customer.getDni(),ReservationService.class);
+        if (Objects.nonNull(request.getEmail())) this.emailHelper.sendMail(request.getEmail(),customer.getFullName(), Tables.reservation.name());
         return this.entityToResponse(reservationPersisted);
     }
 

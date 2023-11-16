@@ -10,6 +10,7 @@ import com.grupo03.Lambda_Voyage.domain.repositories.TourRepository;
 import com.grupo03.Lambda_Voyage.infraestructure.abstract_services.ITourService;
 import com.grupo03.Lambda_Voyage.infraestructure.helpers.BlackListHelper;
 import com.grupo03.Lambda_Voyage.infraestructure.helpers.CustomerHelper;
+import com.grupo03.Lambda_Voyage.infraestructure.helpers.EmailHelper;
 import com.grupo03.Lambda_Voyage.infraestructure.helpers.TourHelper;
 import com.grupo03.Lambda_Voyage.util.enums.Tables;
 import com.grupo03.Lambda_Voyage.util.exceptions.IdNotFoundException;
@@ -19,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -33,6 +35,7 @@ public class TourService implements ITourService {
     private final TourHelper tourHelper;
     private final CustomerHelper customerHelper;
     private BlackListHelper blackListHelper;
+    private final EmailHelper emailHelper;
 
 
     @Override
@@ -86,6 +89,7 @@ public class TourService implements ITourService {
                 .build();
         var tourSaved = this.tourRepository.save(tourToSave);
         this.customerHelper.increase(customer.getDni(), TourService.class);
+        if (Objects.nonNull(request.getEmail())) this.emailHelper.sendMail(request.getEmail(),customer.getFullName(), Tables.tour.name());
 
         return TourResponse.builder()
                 .reservationIds(tourSaved.getReservations().stream().map(ReservationEntity::getId).collect(Collectors.toSet()))
