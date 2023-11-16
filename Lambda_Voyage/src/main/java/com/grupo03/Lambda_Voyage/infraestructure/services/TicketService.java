@@ -11,6 +11,7 @@ import com.grupo03.Lambda_Voyage.infraestructure.abstract_services.ITicketServic
 import com.grupo03.Lambda_Voyage.infraestructure.helpers.ApiCurrencyConnectorHelper;
 import com.grupo03.Lambda_Voyage.infraestructure.helpers.BlackListHelper;
 import com.grupo03.Lambda_Voyage.infraestructure.helpers.CustomerHelper;
+import com.grupo03.Lambda_Voyage.infraestructure.helpers.EmailHelper;
 import com.grupo03.Lambda_Voyage.util.LambdaVoyageUtil;
 import com.grupo03.Lambda_Voyage.util.enums.Tables;
 import com.grupo03.Lambda_Voyage.util.exceptions.IdNotFoundException;
@@ -24,6 +25,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Currency;
+import java.util.Objects;
 import java.util.UUID;
 
 @Transactional
@@ -36,8 +38,9 @@ public class TicketService implements ITicketService {
     private final CustomerRepository customerRepository;
     private final TicketRepository ticketRepository;
     private final CustomerHelper customerHelper;
-    private BlackListHelper blackListHelper;
+    private final BlackListHelper blackListHelper;
     private final ApiCurrencyConnectorHelper currencyConnectorHelper;
+    private final EmailHelper emailHelper;
 
     @Override
     public TicketResponse create(TicketRequest request) {
@@ -56,6 +59,7 @@ public class TicketService implements ITicketService {
                 .build();
         var ticketPersisted = this.ticketRepository.save(ticketToPersist);
         customerHelper.increase(customer.getDni(), TicketService.class);
+        if (Objects.nonNull(request.getEmail())) this.emailHelper.sendMail(request.getEmail(),customer.getFullName(), Tables.ticket.name());
         log.info("Ticket saved with id: {}", ticketPersisted.getId());
         return this.entityToResponse(ticketPersisted);
     }
