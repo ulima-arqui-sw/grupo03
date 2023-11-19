@@ -4,9 +4,11 @@ import com.grupo03.Lambda_Voyage.api.models.responses.HotelResponse;
 import com.grupo03.Lambda_Voyage.domain.entities.HotelEntity;
 import com.grupo03.Lambda_Voyage.domain.repositories.HotelRepository;
 import com.grupo03.Lambda_Voyage.infraestructure.abstract_services.IHotelService;
+import com.grupo03.Lambda_Voyage.util.constants.CacheConstants;
 import com.grupo03.Lambda_Voyage.util.enums.SortType;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -36,6 +38,7 @@ public class HotelService implements IHotelService {
     }
 
     @Override
+    @Cacheable(value = CacheConstants.HOTEL_CACHE_NAME)
     public Set<HotelResponse> readLessPrice(BigDecimal price) {
         return this.hotelRepository.findByPriceLessThan(price)
                 .stream()
@@ -44,6 +47,7 @@ public class HotelService implements IHotelService {
     }
 
     @Override
+    @Cacheable(value = CacheConstants.HOTEL_CACHE_NAME)
     public Set<HotelResponse> readBetweenPrice(BigDecimal min, BigDecimal max) {
         return this.hotelRepository.findByPriceIsBetween(min, max)
                 .stream()
@@ -52,6 +56,7 @@ public class HotelService implements IHotelService {
     }
 
     @Override
+    @Cacheable(value = CacheConstants.HOTEL_CACHE_NAME)
     public Set<HotelResponse> readByRating(Integer rating) {
         return this.hotelRepository.findByRatingGreaterThan(rating)
                 .stream()
