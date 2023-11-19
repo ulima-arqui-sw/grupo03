@@ -4,9 +4,11 @@ import com.grupo03.Lambda_Voyage.api.models.responses.FlyResponse;
 import com.grupo03.Lambda_Voyage.domain.entities.FlyEntity;
 import com.grupo03.Lambda_Voyage.domain.repositories.FlyRepository;
 import com.grupo03.Lambda_Voyage.infraestructure.abstract_services.IFlyService;
+import com.grupo03.Lambda_Voyage.util.constants.CacheConstants;
 import com.grupo03.Lambda_Voyage.util.enums.SortType;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -43,6 +45,7 @@ public class FlyService implements IFlyService {
     }
 
     @Override
+    @Cacheable(value = CacheConstants.FLY_CACHE_NAME)
     public Set<FlyResponse> readLessPrice(BigDecimal price) {
 
         return this.flyRepository.selectLessPrice(price)
@@ -60,6 +63,7 @@ public class FlyService implements IFlyService {
     }
 
     @Override
+    @Cacheable(value = CacheConstants.FLY_CACHE_NAME)
     public Set<FlyResponse> readByOriginDestiny(String origin, String destiny) {
         return this.flyRepository.selectOriginDestiny(origin, destiny)
                 .stream()
