@@ -1,3 +1,41 @@
+
+# ADD 
+
+
+## Iteración 01: Establecer estructura general del sistema
+
+El objetivo de esta iteración es desarrollar los requisitos funcionales del módulo 2 de reservas, desarrollar el modelado de datos y crear un diseño inicial de la arquitectura.
+
+Objetivos:
+Definir y documentar los requisitos más críticos del sistema.
+Identificar restricciones y escenarios de calidad. 
+Seleccionar drivers a priorizar en el desarrollo del sistema
+Documentar decisiones preliminares de diseño de arquitectura según cada módulo.
+Crear un diseño inicial de la arquitectura del sistema.
+Revisar el cumplimiento del objetivo de la iteración
+
+## Iteración 02: Identificar estructuras que soporten funcionalidad primaria
+
+El objetivo de esta iteración es desarrollar los requisitos funcionales del módulo 3 de pagos e integrar la aplicación junto con los microservicios y API externos.
+
+
+Objetivos:
+Mejorar y refinar la arquitectura del sistema en función de la retroalimentación recibida.
+Desarrollar prototipos de los componentes más críticos para validar su funcionalidad y rendimiento.
+
+## Iteración 03: Abordando el escenario
+
+El objetivo de esta iteración es considerar los escenarios de seguridad de los módulos desarrollados e implementar tácticas para asegurar la correcta protección de los datos de los usuarios frente a posibles ataques cibernéticos. 
+
+Objetivos:
+Integrar todos los componentes del sistema y asegurar su interoperabilidad.
+Realizar pruebas exhaustivas para validar que el sistema cumple con todos los requisitos especificados.
+Finalizar la documentación de la arquitectura, incluyendo manuales y diagramas actualizados.
+
+
+
+
+
 # ULAS-PF
 # Arquitectura de Software Grupo 03
 ## Integrantes
