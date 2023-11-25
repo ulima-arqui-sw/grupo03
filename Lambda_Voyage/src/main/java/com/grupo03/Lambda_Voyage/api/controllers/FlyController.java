@@ -26,7 +26,7 @@ public class FlyController {
 
     @Operation(summary = "Retrieve a paginated list of flights that can be sorted.")
     @GetMapping
-    @Notify
+    @Notify(value = "GET fly")
     public ResponseEntity<Page<FlyResponse>> getAll(
             @RequestParam Integer page,
             @RequestParam Integer size,

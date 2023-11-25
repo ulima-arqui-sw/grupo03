@@ -2,6 +2,7 @@ package com.grupo03.Lambda_Voyage.api.controllers;
 
 import com.grupo03.Lambda_Voyage.api.models.responses.HotelResponse;
 import com.grupo03.Lambda_Voyage.infraestructure.abstract_services.IHotelService;
+import com.grupo03.Lambda_Voyage.util.annotations.Notify;
 import com.grupo03.Lambda_Voyage.util.enums.SortType;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -24,6 +25,7 @@ public class HotelController {
 
     @Operation(summary = "Retrieve a paginated list of hotels that can be sorted.")
     @GetMapping
+    @Notify(value = "GET hotel")
     public ResponseEntity<Page<HotelResponse>> getAll(
             @RequestParam Integer page,
             @RequestParam Integer size,
