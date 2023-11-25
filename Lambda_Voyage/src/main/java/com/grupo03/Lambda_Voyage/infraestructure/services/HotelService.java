@@ -1,8 +1,8 @@
 package com.grupo03.Lambda_Voyage.infraestructure.services;
 
 import com.grupo03.Lambda_Voyage.api.models.responses.HotelResponse;
-import com.grupo03.Lambda_Voyage.domain.entities.HotelEntity;
-import com.grupo03.Lambda_Voyage.domain.repositories.HotelRepository;
+import com.grupo03.Lambda_Voyage.domain.entities.jpa.HotelEntity;
+import com.grupo03.Lambda_Voyage.domain.repositories.jpa.HotelRepository;
 import com.grupo03.Lambda_Voyage.infraestructure.abstract_services.IHotelService;
 import com.grupo03.Lambda_Voyage.util.constants.CacheConstants;
 import com.grupo03.Lambda_Voyage.util.enums.SortType;

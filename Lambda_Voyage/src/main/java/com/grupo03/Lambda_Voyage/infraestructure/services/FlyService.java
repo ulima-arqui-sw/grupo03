@@ -1,8 +1,8 @@
 package com.grupo03.Lambda_Voyage.infraestructure.services;
 
 import com.grupo03.Lambda_Voyage.api.models.responses.FlyResponse;
-import com.grupo03.Lambda_Voyage.domain.entities.FlyEntity;
-import com.grupo03.Lambda_Voyage.domain.repositories.FlyRepository;
+import com.grupo03.Lambda_Voyage.domain.entities.jpa.FlyEntity;
+import com.grupo03.Lambda_Voyage.domain.repositories.jpa.FlyRepository;
 import com.grupo03.Lambda_Voyage.infraestructure.abstract_services.IFlyService;
 import com.grupo03.Lambda_Voyage.util.constants.CacheConstants;
 import com.grupo03.Lambda_Voyage.util.enums.SortType;

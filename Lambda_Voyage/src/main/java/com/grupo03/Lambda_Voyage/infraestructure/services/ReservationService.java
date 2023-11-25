@@ -3,10 +3,10 @@ package com.grupo03.Lambda_Voyage.infraestructure.services;
 import com.grupo03.Lambda_Voyage.api.models.request.ReservationRequest;
 import com.grupo03.Lambda_Voyage.api.models.responses.HotelResponse;
 import com.grupo03.Lambda_Voyage.api.models.responses.ReservationResponse;
-import com.grupo03.Lambda_Voyage.domain.entities.ReservationEntity;
-import com.grupo03.Lambda_Voyage.domain.repositories.CustomerRepository;
-import com.grupo03.Lambda_Voyage.domain.repositories.HotelRepository;
-import com.grupo03.Lambda_Voyage.domain.repositories.ReservationRepository;
+import com.grupo03.Lambda_Voyage.domain.entities.jpa.ReservationEntity;
+import com.grupo03.Lambda_Voyage.domain.repositories.jpa.CustomerRepository;
+import com.grupo03.Lambda_Voyage.domain.repositories.jpa.HotelRepository;
+import com.grupo03.Lambda_Voyage.domain.repositories.jpa.ReservationRepository;
 import com.grupo03.Lambda_Voyage.infraestructure.abstract_services.IReservationService;
 import com.grupo03.Lambda_Voyage.infraestructure.helpers.ApiCurrencyConnectorHelper;
 import com.grupo03.Lambda_Voyage.infraestructure.helpers.BlackListHelper;
@@ -89,7 +89,7 @@ public class ReservationService implements IReservationService {
 
     @Override
     public void delete(UUID id) {
-        var reservationToDelete = reservationRepository.findById(id).orElseThrow(()-> new IdNotFoundException("reservation"));
+        var reservationToDelete = reservationRepository.findById(id).orElseThrow(()-> new IdNotFoundException(Tables.reservation.name()));
         this.reservationRepository.delete(reservationToDelete);
     }
 
