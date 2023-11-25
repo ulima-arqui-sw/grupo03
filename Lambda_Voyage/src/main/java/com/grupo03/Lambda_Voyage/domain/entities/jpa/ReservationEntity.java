@@ -1,11 +1,10 @@
-package com.grupo03.Lambda_Voyage.domain.entities;
+package com.grupo03.Lambda_Voyage.domain.entities.jpa;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.cglib.core.Local;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

@@ -1,8 +1,8 @@
 package com.grupo03.Lambda_Voyage.infraestructure.helpers;
 
-import com.grupo03.Lambda_Voyage.domain.entities.*;
-import com.grupo03.Lambda_Voyage.domain.repositories.ReservationRepository;
-import com.grupo03.Lambda_Voyage.domain.repositories.TicketRepository;
+import com.grupo03.Lambda_Voyage.domain.entities.jpa.*;
+import com.grupo03.Lambda_Voyage.domain.repositories.jpa.ReservationRepository;
+import com.grupo03.Lambda_Voyage.domain.repositories.jpa.TicketRepository;
 import com.grupo03.Lambda_Voyage.infraestructure.services.ReservationService;
 import com.grupo03.Lambda_Voyage.infraestructure.services.TicketService;
 import com.grupo03.Lambda_Voyage.util.LambdaVoyageUtil;

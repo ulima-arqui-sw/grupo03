@@ -1,7 +1,6 @@
 package com.grupo03.Lambda_Voyage.api.models.responses;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.grupo03.Lambda_Voyage.domain.entities.HotelEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

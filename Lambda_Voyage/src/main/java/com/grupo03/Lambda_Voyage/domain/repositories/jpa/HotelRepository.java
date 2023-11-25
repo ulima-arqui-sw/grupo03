@@ -1,6 +1,6 @@
-package com.grupo03.Lambda_Voyage.domain.repositories;
+package com.grupo03.Lambda_Voyage.domain.repositories.jpa;
 
-import com.grupo03.Lambda_Voyage.domain.entities.HotelEntity;
+import com.grupo03.Lambda_Voyage.domain.entities.jpa.HotelEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.math.BigDecimal;

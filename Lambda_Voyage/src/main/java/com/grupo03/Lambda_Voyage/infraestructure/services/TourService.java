@@ -2,11 +2,11 @@ package com.grupo03.Lambda_Voyage.infraestructure.services;
 
 import com.grupo03.Lambda_Voyage.api.models.request.TourRequest;
 import com.grupo03.Lambda_Voyage.api.models.responses.TourResponse;
-import com.grupo03.Lambda_Voyage.domain.entities.*;
-import com.grupo03.Lambda_Voyage.domain.repositories.CustomerRepository;
-import com.grupo03.Lambda_Voyage.domain.repositories.FlyRepository;
-import com.grupo03.Lambda_Voyage.domain.repositories.HotelRepository;
-import com.grupo03.Lambda_Voyage.domain.repositories.TourRepository;
+import com.grupo03.Lambda_Voyage.domain.entities.jpa.*;
+import com.grupo03.Lambda_Voyage.domain.repositories.jpa.CustomerRepository;
+import com.grupo03.Lambda_Voyage.domain.repositories.jpa.FlyRepository;
+import com.grupo03.Lambda_Voyage.domain.repositories.jpa.HotelRepository;
+import com.grupo03.Lambda_Voyage.domain.repositories.jpa.TourRepository;
 import com.grupo03.Lambda_Voyage.infraestructure.abstract_services.ITourService;
 import com.grupo03.Lambda_Voyage.infraestructure.helpers.BlackListHelper;
 import com.grupo03.Lambda_Voyage.infraestructure.helpers.CustomerHelper;

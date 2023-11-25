@@ -1,7 +1,7 @@
 package com.grupo03.Lambda_Voyage.infraestructure.services;
 
-import com.grupo03.Lambda_Voyage.domain.entities.CustomerEntity;
-import com.grupo03.Lambda_Voyage.domain.repositories.CustomerRepository;
+import com.grupo03.Lambda_Voyage.domain.entities.jpa.CustomerEntity;
+import com.grupo03.Lambda_Voyage.domain.repositories.jpa.CustomerRepository;
 import com.grupo03.Lambda_Voyage.infraestructure.abstract_services.ReportService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

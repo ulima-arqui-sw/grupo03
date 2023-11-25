@@ -1,4 +1,4 @@
-package com.grupo03.Lambda_Voyage.domain.entities;
+package com.grupo03.Lambda_Voyage.domain.entities.jpa;
 
 import com.grupo03.Lambda_Voyage.util.enums.Aeroline;
 import jakarta.persistence.*;
