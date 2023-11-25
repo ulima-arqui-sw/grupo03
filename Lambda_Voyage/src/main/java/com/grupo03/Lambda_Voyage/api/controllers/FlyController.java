@@ -2,12 +2,14 @@ package com.grupo03.Lambda_Voyage.api.controllers;
 
 import com.grupo03.Lambda_Voyage.api.models.responses.FlyResponse;
 import com.grupo03.Lambda_Voyage.infraestructure.abstract_services.IFlyService;
+import com.grupo03.Lambda_Voyage.util.annotations.Notify;
 import com.grupo03.Lambda_Voyage.util.enums.SortType;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -24,10 +26,13 @@ public class FlyController {
 
     @Operation(summary = "Retrieve a paginated list of flights that can be sorted.")
     @GetMapping
+    @Notify
     public ResponseEntity<Page<FlyResponse>> getAll(
             @RequestParam Integer page,
             @RequestParam Integer size,
             @RequestHeader(required = false) SortType sortType){
+        var authentication = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println(authentication.getAuthorities());
         if(Objects.isNull(sortType)) sortType = SortType.NONE;
         var response = this.flyService.readAll(page, size, sortType);
         return response.isEmpty()?ResponseEntity.noContent().build():ResponseEntity.ok(response);
