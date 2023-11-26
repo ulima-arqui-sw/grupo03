@@ -111,6 +111,7 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+					<finalName>lambda-voyage</finalName>
 				</configuration>
 			</plugin>
 		</plugins>
