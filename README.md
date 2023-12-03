@@ -71,7 +71,7 @@ Amazon EventBridge se utiliza comúnmente para construir arquitecturas sin servi
 
 Para demostrar el uso de EventBridge, se ha planteado una prueba de concepto de esta tecnología. El contexto de la aplicación es un ATM que genera eventos según ciertas condiciones de las transacciones bancarias que se realicen. Para ello, se ha creado una aplicación que está conformado por 4 funciones lambda, que se van a explicar a continuación:
 
-![Arquitectura](amazon-eventbridge-producer-consumer-example\demo.drawio.png)
+![Arquitectura](sebastian-event-bridge-demo/demo.drawio.png)
 
 
 - atmProducer: Es una función Lambda productora que va a llamar a EventBridge. Esta función enviará data del archivo events.js, la cual contiene un arreglo de objetos que representan las transacciones bancarias.
@@ -93,6 +93,6 @@ Para demostrar el uso de EventBridge, se ha planteado una prueba de concepto de 
 - La regla de EventBridge especificada en `template.yaml` filtra los eventos según los criterios en la sección de `EventPattern`
 - Cuando la regla valida el evento, se invoca la función consumidora correspondiente. Solo se imprime el evento, el cual sería visible en `CloudWatch Logs`
 
-Vídeo Demostración: 
+Vídeo Demostración:  https://ulima-edu-pe.zoom.us/rec/share/-kACVVnCF9_XiBRlq5zJWwXldHbfVvlHzIo6NYTe12DpUrjNHTUHGK6RbY4ww6yL.LYg1Z5iUzYZNk5D6
 
 
