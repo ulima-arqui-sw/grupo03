@@ -1,41 +1,3 @@
-
-# ADD 
-
-
-## Iteración 01: Establecer estructura general del sistema
-
-El objetivo de esta iteración es desarrollar los requisitos funcionales del módulo 2 de reservas, desarrollar el modelado de datos y crear un diseño inicial de la arquitectura.
-
-Objetivos:
-Definir y documentar los requisitos más críticos del sistema.
-Identificar restricciones y escenarios de calidad. 
-Seleccionar drivers a priorizar en el desarrollo del sistema
-Documentar decisiones preliminares de diseño de arquitectura según cada módulo.
-Crear un diseño inicial de la arquitectura del sistema.
-Revisar el cumplimiento del objetivo de la iteración
-
-## Iteración 02: Identificar estructuras que soporten funcionalidad primaria
-
-El objetivo de esta iteración es desarrollar los requisitos funcionales del módulo 3 de pagos e integrar la aplicación junto con los microservicios y API externos.
-
-
-Objetivos:
-Mejorar y refinar la arquitectura del sistema en función de la retroalimentación recibida.
-Desarrollar prototipos de los componentes más críticos para validar su funcionalidad y rendimiento.
-
-## Iteración 03: Abordando el escenario
-
-El objetivo de esta iteración es considerar los escenarios de seguridad de los módulos desarrollados e implementar tácticas para asegurar la correcta protección de los datos de los usuarios frente a posibles ataques cibernéticos. 
-
-Objetivos:
-Integrar todos los componentes del sistema y asegurar su interoperabilidad.
-Realizar pruebas exhaustivas para validar que el sistema cumple con todos los requisitos especificados.
-Finalizar la documentación de la arquitectura, incluyendo manuales y diagramas actualizados.
-
-
-
-
-
 # ULAS-PF
 # Arquitectura de Software Grupo 03
 ## Integrantes
@@ -1035,3 +997,240 @@ El proyecto y experimentación están cargados en el enlace que redirecciona al 
 **Github:** https://github.com/20111383/Auth\_firebase\_firestore
 
 <!--- Hola somos el grupo03. -->
+
+
+# Workshop de Atributos de Calidad (QAW):**
+
+[https://docs.google.com/spreadsheets/d/1IinPAGwtmyfjPohU2-fDY-H-sTMfLg0y/edit#gid=1700488427](https://docs.google.com/spreadsheets/d/1IinPAGwtmyfjPohU2-fDY-H-sTMfLg0y/edit#gid=1700488427)
+
+
+# ADD
+
+
+**Historias de Usuario**
+
+| ID | Nombre | Historia de Usuario |
+| --- | --- | --- |
+| RF1.1 | Crear cuenta. | Yo, como usuario, quiero poder generar mi cuenta con mi correo de gmail y recibir una notificación de validación para acelerar mi proceso de acceso a la plataforma. |
+| RF.1.2 | Editar información personal. | Yo, como usuario, quiero poder modificar toda mi información personal para actualizar algún valor determinado. |
+| RF1.3 | Recibir alertas de seguridad | Yo, como usuario, quiero recibir alertas de seguridad en mi celular cuando inicie sesión en un nuevo dispositivo para tener trazabilidad de mi cuenta. |
+| RF1.4 | Iniciar sesión | Yo, como usuario, quiero poder autenticar el inicio de sesión utilizando un código que envié a mi teléfono para aumentar la seguridad de mi cuenta. |
+
+| ID | Nombre | Historia de Usuario |
+| --- | --- | --- |
+| RF2.1 | Filtrar vuelos | Yo, como usuario, quiero completar filtros, para que el sistema me muestra un catálogo de vuelos que cumplan con mis intereses. |
+| RF2.2 | Seleccionar vuelo. | Yo, como usuario, quiero seleccionar el vuelo de mi interés, para proceder con la selección de mi asiento. |
+| RF2.3 | Seleccionar asiento. | Yo, como usuario, quiero seleccionar el asiento dentro del vuelo seleccionado, para reservar mi lugar y continuar con la pasarela de pago. |
+| RF2.4 | Llenar información | Yo, como usuario, quiero llenar información para la reserva de boletos, para agregar un pasajero adicional. |
+| RF2.5 | Ver datos de vuelo | Yo, como usuario, quiero ver los datos de vuelo del avión (salida, destino, hora de embarque, etc), para identificar cada vuelo. |
+
+| ID | Nombre | Historia de Usuario |
+| --- | --- | --- |
+| RF3.1 | Pagar boleto | Yo, como usuario, quiero realizar el pago de mi boleto seleccionado, para confirmar mi compra. |
+| RF3.2 | Acumular millas | Yo, como usuario, quiero que el sistema me envíe un correo indicando cuántas millas he ganado por la compra de mi boleto, para saber el estado actual de mis millas. |
+| RF3.3 | Recibir boleto | Yo, como usuario, quiero recibir el boleto con los detalles de mi vuelo en mi correo, para saber la información de mi vuelo |
+
+| ID | Nombre | Historia de Usuario |
+| --- | --- | --- |
+| RF4.1 | Ver ubicación de aviones | Yo, como usuario, quiero visualizar la ubicación de los aviones en el mapa para saber dónde se encuentran en tiempo real. |
+| RF4.3 | Ver clima | Yo, como usuario, quiero ver en el mapa el clima actual para saber si el vuelo correrá con retrasos o imprevistos |
+| RF4.4 | Filtrar vuelos | Yo, como usuario quiero filtrar los vuelos por ruta o fecha, para encontrar los vuelos que me interesan. |
+
+**Escenarios de atributos de calidad**
+
+| Código | Atributo      | Escenario                                                                         | Historia de Usuario Asociado                 |
+|--------|---------------|-----------------------------------------------------------------------------------|----------------------------------------------|
+| QA-1   | Seguridad     | Cuando el usuario envía datos personales y realiza transacciones en línea, estos serán protegidos utilizando mecanismos de ciberseguridad para que los datos comprometidos sean el 0%. | RF1.1, RF1.2, RF1.4, RF2.4, RF3.1               |
+| QA-2   | Seguridad     | Cuando el usuario intenta realizar un inicio de sesión en un dispositivo no reconocido, se realizará una verificación y autorización exitosa del usuario o denegación en caso de falla en la autenticación con una tasa de éxito de 99.9% en nuevos dispositivos. | RF1.3, RF1.4                                  |
+| QA-3   | Seguridad     | Cuando un atacante intenta realizar un ataque "Man-in-the-middle" para interceptar y manipular las comunicaciones entre un usuario y la página web LambdaVoyage, le será imposible extraer datos, pues las comunicaciones estarán encriptadas dando así con un 0 casos de vulnerabilidades. | RF3.1                                       |
+| QA-4   | Seguridad     | Cuando un atacante intente realizar una inyección SQL en los campos de inicio de sesión o registro, el sistema responderá utilizando JPA y JDBC para así detectar y mitigar el ataque en menos de 20 segundos. | RF1.1, RF1.4                                  |
+| QA-5   | Confiabilidad  | Cuando un usuario interactúe con el sitio web de Lambda Voyage, el tiempo promedio que pasa entre las fallas del sitio web será mínimo llegando así a un MTBF alto. | Todos                                        |
+| QA-6   | Mantenibilidad | Cuando un desarrollador implementa nuevas actualizaciones con nuevas características y corrección de errores, no habrá interrupciones significativas en el servicio. | Todos                                        |
+| QA-7   | Rendimiento    | Cuando el sistema intenta cargar las páginas y resultados de búsqueda, estas se cargan de manera rápida y eficiente, y las operaciones se procesan sin demoras significativas con un tiempo de carga de página promedio inferior a 2 segundos y procesamiento de reservas en menos de 5 segundos. | Todos                                        |
+| QA-8   | Escalabilidad  | Cuando la plataforma experimenta un aumento repentino en la cantidad de usuarios activos, la plataforma podrá manejar el aumento de usuarios sin generar problemas en el rendimiento. Capacidad de la plataforma para escalar y mantener el rendimiento (por ejemplo, aumento del 200% en tráfico sin pérdida de velocidad). | Todos                                        |
+| QA-9   | Usabilidad     | Cuando el usuario inicia sesión y realiza la reserva de vuelo sin requerimientos de asistencia, el usuario será capaz de completar la reserva de vuelo sin problemas y de manera intuitiva con un 100% de éxito. | RF1.4, RF2.1, RF2.2, RF2.3, RF2.4, RF2.5      |
+| QA-10  | Disponibilidad | Cuando el usuario intenta acceder a la plataforma, el sistema debe estar disponible en todo momento. Porcentaje de tiempo de disponibilidad, por ejemplo, 99.9% de disponibilidad anual. | Todos                                        |
+| QA-11  | Disponibilidad | Cuando ocurra una interrupción del proceso de pago debido a pérdida de conexión a Internet o intento de cerrar la página, el sistema de procesamiento de pagos debe mantener la disponibilidad y permitir una recuperación sin problemas después de una interrupción. El sistema debe ser capaz de recuperarse automáticamente después de una interrupción en un plazo de 2 minutos. | RF3.1                                       |
+| QA-12  | Usabilidad     | Cuando el usuario interactúe con la interfaz de seguimiento, la interfaz de seguimiento debe ser fácil de usar para los usuarios. | RF4.4                                       |
+| QA-13  | Funcionalidad  | Cuando haya un cambio en la posición de una aeronave, el sistema debe proporcionar actualizaciones precisas de la ubicación de las aeronaves. Error medio de seguimiento, por ejemplo, menos de 10 metros. | RF4.4                                       |
+
+
+
+**Restricciones:**
+
+| **Código** | **Restricción** |
+| --- | --- |
+| **CON-1** | La aplicación debe integrarse con Stripe para la pasarela de pago. |
+| **CON-2** | El sistema debe soportar como mínimo 20 usuarios en simultáneo. |
+| **CON-3** | La conversión de tarifas debe obtener el tipo de cambio actual |
+| **CON-4** | El sistema debe ser accesible desde ordenador y móvil |
+
+**Preocupaciones a nivel de Arquitectura:**
+
+| **Código** | **Descripción** |
+| --- | --- |
+| **CRN-1** | Establecer una estructura inicial y funcional del sistema |
+| **CRN-2** | Utilizar Java y Angular como tecnologías principales para el backend y frontend, debido a qué el equipo solo maneja esas tecnologías. |
+| **CRN-3** | Asegurarse que la arquitectura asegure un rendimiento alto y rápido. |
+| **CRN-4** | Asegurarse que la arquitectura sea segura para así prevenir vulnerabilidades y amenazas que afecten la integridad de los datos privados de los clientes. |
+| **CRN-5** | Asegurar que la arquitectura facilite la creación de interfaces de usuarios intuitivas y eficientes para una experiencia de usuario sencilla y directa. |
+
+2.2) Iteraciones de ADD:
+
+1. Identificar el **elemento** del sistema a diseñar
+2. Identificar los **requerimientos relevantes** a nivel de arquitectura para dicho elemento.
+3. Generar un **diseño de solución** para el elemento seleccionado.
+4. Verificar si **existen requerimientos que no han sido abordados para ser tratados en la siguiente iteración**.
+5. Este proceso debe repetirse hasta que todos los requerimientos con impacto en la Arquitectura hayan sido abordados.
+
+**Iteración 01: Establecer estructura general del sistema**
+
+**Paso 1: Revisar entradas**
+
+| **Propósito de diseño**                            | **Funcionalidad primaria**                                                                                                                    | **Escenarios de calidad**                                                                                                                                                                | **Restricciones y preocupaciones de arquitectura**                                                                                                |
+|------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Crear el sistema desde cero.                         | RF2.1: Filtrar vuelos. RF2.2: Seleccionar vuelos. RF2.3: Seleccionar asiento. RF2.4: Llenar información. RF2.5: Ver datos del vuelo. RF3.1: Pagar boleto.  | QA-1: Seguridad QA-6: Mantenibilidad QA-7: Rendimiento QA-8: Escalabilidad QA-9: Usabilidad QA-10: Disponibilidad                                                                          | CRN-1: Establecer una estructura inicial y funcional del sistema CRN-2: Utilizar Java y Angular como tecnologías principales para el backend y frontend, debido a que el equipo solo maneja esas tecnologías. CRN-3: Asegurarse que la arquitectura asegure un rendimiento alto y rápido. CON-4: El sistema debe ser accesible desde ordenador y móvil. |
+
+
+
+
+**Paso 2: Establecer objetivo de la iteración**
+
+**Objetivo** :
+
+Establecer la estructura inicial y funcional del sistema que permita realizar el flujo operativo básico de la aplicación para el proceso de reserva de un boleto de ticket de avión priorizando así el rendimiento y la experiencia de usuario.
+
+**Paso 3: Elegir uno o más elemento del sistema a refinar**
+
+**Diagrama de contexto:**
+
+![Alt Text](diagrama_contexto.png)
+
+En el Diagrama de Contexto, podemos apreciar la arquitectura a alto nivel del sistema, dónde básicamente el cliente principal va a interactuar con la aplicación. El cliente principalmente va a enviar información financiera, personal y sus preferencias de búsqueda para que la aplicación le retorne la información de vuelos y el boleto de avión.
+
+**Paso 4: Elegir uno o más conceptos de diseño que satisfacen el driver seleccionado**
+
+Decisiones de diseño
+
+| Código | Decisión de diseño | Fundamentación |
+| --- | --- | --- |
+| DEC-1 | Construir la interfaz de usuario del cliente en Angular utilizando Angular Material | Utilizar Angular asegura la mantenibilidad (QA-6) y permite la creación rápida de interfaces de usuarios amigables, intuitivas (QA-9) y responsive mediante Angular Material (CON-4). Además, es una tecnología conocida por los desarrolladores (CRN-2). |
+| DEC-2 | Se utilizarán 3 Bases de Datos: Redis, MongoDB y PostgreSQL. | El uso de MongoDB asegura la correcta seguridad de los datos personales de los clientes (QA-1). El uso de Redis asegura un mejor rendimiento en el sistema, debido al manejo de la memoria caché (QA-7). El uso de PostgreSQL servirá para almacenar la data restante del sistema. Esta separación de datos asegura una correcta mantenibilidad del sistema (QA-6). Por lo que, cada BD sería independiente, una de la otra, asegurando que cada una cumpla con un objetivo en específico. |
+| DEC-3 | El backend tendrá un diseño basado en dominio (Design Driven Domain) | Para la arquitectura del Backend, se está siguiendo el enfoque Design Driven Domain. Este patrón asegura la escalabilidad (QA-8) y la mantenibilidad (QA-6), ya que permite orientar el desarrollo del backend para manejar de manera específica las necesidades del dominio del sistema. |
+| DEC-4 | Utilizar Java para los servicios de backend. | Java es el lenguaje principal que maneja el equipo de desarrollo. Así que esa sería la única opción que se tiene para el desarrollo del backend (CRN-2). |
+
+Paso 5: Instanciar elementos de arquitectura, asignar responsabilidades y definir interfaces
+
+| Código | Decisión de diseño | Fundamentación |
+| --- | --- | --- |
+| DEC-5 | Estructurar el sistema en 4 módulos: Módulo de seguridad, módulo de reservas, módulo de pago y módulo de tracking. | Las funcionalidades del sistema deben estar correctamente separadas para así poder asegurar la correcta mantenibilidad de la aplicación (QA-6), ya que cada componente debe ser independiente del uno del otro. De tal forma, que en caso exista algún error o modificación, no se afecte a los demás módulos. |
+| DEC-6 | Utilizar Spring WebFlux como modelo de coordinación de datos. | WebFlux permite asegurar la asincronía, lo cual implica el manejo de múltiples solicitudes simultáneas de manera eficiente (QA-7). Además, facilita la interoperabilidad con Spring Web manejando eficientemente las solicitudes y posibilitando así la escalabilidad. |
+
+**Paso 6: Bosquejar vistas y registrar decisiones de diseño**
+
+**Vista inicial de módulos**
+
+![Diagrama de modulos](modulos.drawio.png)
+
+**Vista inicial de despliegue**
+
+![Vista de despliegue](despliegue.drawio.png)
+
+**Paso 7: Analizar el diseño actual, revisar objetivo de la iteración y logro del propósito del diseño**
+
+![Decisiones iteración 01](review_ite_1.png)
+
+
+**Iteración 02: Identificar estructuras que soporten funcionalidad primaria (funciones)**
+
+**Paso 1: Revisar entradas**
+
+| **Propósito de diseño** | **Funcionalidad primaria** | **Escenarios de calidad** | **Restricciones y preocupaciones de arquitectura** |
+|-------------------------|----------------------------|---------------------------|----------------------------------------------------|
+| Diseñar el modelo de datos del sistema. Implementar las funcionalidades principales del sistema. | RF2.1: Filtrar vuelos RF2.2: Seleccionar vuelo RF2.3: Seleccionar asiento RF2.4: Llenar información RF2.5: Ver datos del vuelo RF3.1: Pagar boleto RF3.3: Recibir boleto | QA-6: Mantenibilidad QA-7: Rendimiento QA-9: Usabilidad QA-10: Disponibilidad QA-11: Disponibilidad | CRN-3: Asegurarse que la arquitectura asegure un rendimiento alto y rápido. CRN-5: Asegurar que la arquitectura facilite la creación de interfaces de usuarios intuitivas y eficientes para una experiencia de usuario sencilla y directa. CON-1: La aplicación debe integrarse con Stripe para la pasarela de pago. CON-2: El sistema debe soportar como mínimo 20 usuarios en simultáneo. CON-3: La conversión de tarifas debe obtener el tipo de cambio actual. |
+
+
+**PASO 2: ESTABLECER OBJETIVO DE LA ITERACIÓN**
+
+**Objetivo** :
+
+Desarrollar las funcionalidades principales de la plataforma e integrar el sistema junto con las APIs externas priorizando el rendimiento y la experiencia de usuario.
+
+**PASO 3: ELEGIR UNO O MÁS ELEMENTOS DEL SISTEMA A REFINAR**
+
+Para esta iteración, se tomarán los elementos de entrada.
+
+**PASO 4: ELEGIR UNO O MÁS CONCEPTOS DE DISEÑO QUE SATISFACEN EL DRIVER SELECCIONADO**
+
+| Código | Decisión de diseño | Fundamentación |
+| --- | --- | --- |
+| DEC-1 | Utilizar Stripe como Pasarela de Pago | Esta tecnología es vital para una pasarela de pago, esta cumple con el requisito funcional RF 3.1: Pagar boleto y será el previo al RF3.3: recibir boleto |
+| DEC-2 | Docker para el mantenimiento de las bases de datos | Docket permite realizar un mantenimiento fácil y rápido a las bases de datos ya que se administran todas desde un solo dispositivo además que encapsula las diferentes bases de datos que se tienen. Alineados con los escenario de calidad QA-6 |
+| DEC-3 | Servicios de forma local | Por cuestiones de presupuesto los servicios serán realizados de forma local, esto no impide que se alineen a las entradas para esta iteración, de esta forma cumplen con funcionalidades RF2.1, RF2.2, RF3.1 y RF3.3 |
+| DEC-4 | API de tipo de cambio en tipo real. Api currency. Web cliente | Estas tipo de api son precisas y se pueden actualizar rápidamente, generan facilidad de integración y ofrecen cobertura seguridad. Los escenarios de calidad previstos para esta decisión son: QA-9 y QA-7 |
+
+**PASO 5: BOSQUEJAR VISTAS Y REGISTRAR DECISIONES DE DISEÑO**
+
+Modelo de dominio inicial
+
+![diagrama de BD](data.png)
+
+Diagramas de secuencias
+
+**Paso 6: Analizar el diseño actual, revisar objetivo de la iteración y logro del propósito del diseño**
+
+![Iteración 02](iteracion_02.png)
+
+**Iteración 03: Abordando el escenario (seguridad)**
+
+**Paso 1: Revisar entradas**
+
+| **Propósito de diseño** | **Funcionalidad primaria** | **Escenarios de calidad** | **Restricciones y preocupaciones de arquitectura** |
+|-------------------------|----------------------------|---------------------------|----------------------------------------------------|
+| Incrementar la seguridad del sistema para asegurar la protección de los datos personales de los clientes. | RF1.3 Recibir alertas de seguridad RF1.4 Iniciar sesión | QA-1: Seguridad QA-2: Seguridad QA-3: Seguridad QA-4: Seguridad | CRN-4: Asegurarse que la arquitectura sea segura para así prevenir vulnerabilidades y amenazas que afecten la integridad de los datos privados de los clientes. |
+
+
+**Paso 2: Establecer objetivo de la iteración**
+
+**Objetivo:**
+
+El objetivo de esta iteración es considerar los escenarios de seguridad de los módulos desarrollados e implementar tácticas para asegurar la correcta protección de los datos de los usuarios frente a posibles ataques cibernéticos.
+
+**Paso 3: Elegir uno o más elemento del sistema a refinar**
+
+Se refinaron los elementos del módulo de seguridad
+
+**Paso 4: Elegir uno o más conceptos de diseño que satisfacen el driver seleccionado**
+
+| Código | Decisión de diseño | Fundamentación |
+| --- | --- | --- |
+| DEC-1 | Oauth2 para autenticación de usuarios y encriptar información. Tokens de acceso para ingresar los recursos mediante data embebida | Debido a que OAuth2 es un protocolo ampliamente utilizado que proporciona un nivel sólido de seguridad. La autenticación segura es crucial para garantizar que los recursos del sistema solo puedan acceder los usuarios autorizados. Los escenarios de calidad de seguridad son esenciales para asegurarse de que el sistema cumpla con los estándares de seguridad. Durante todo el ciclo de vida del desarrollo del software, la seguridad debe ser una preocupación constante. Es fundamental proteger la privacidad de los datos de los clientes asegurándose de que la arquitectura del sistema esté diseñada teniendo en cuenta la seguridad desde el principio.Esta decisión tiene como escenarios: RF1.4, QA-2, QA-3, QA-4 y CRN-4. |
+| DEC-2 | RSA para intercambio de información usando llave pública y privada. Seguridad de backend. | El uso de RSA para el intercambio de información es apropiado y apropiado. La seguridad de la comunicación mediante el uso de claves públicas y privadas es una práctica común para proteger la confidencialidad e integridad de los datos transmitidos. Es esencial asegurar la seguridad del backend también. Un backend seguro es esencial para administrar las operaciones del sistema de manera segura y proteger la información almacenada. Los escenarios de calidad previstos para esta decisión son: QA2,3 y 4, CRN-1 y CRN-4 |
+
+**Paso 5: Bosquejar vistas y registrar decisiones de diseño**
+
+Diagramas de secuencia
+
+**Paso 6: Analizar el diseño actual, revisar objetivo de la iteración y logro del propósito del diseño**
+
+![Decision03](iteracion_03.png)
+
+**Aplicación de patrones de Arquitectura**
+
+Para el presente trabajo se ha tomado una arquitectura basada en **Cliente-Servidor.** El cliente vendría a ser la aplicación en Angular y el servidor los servicios desarrollados en Java.
+
+**Tópicos en Arquitectura de Software (Componente Individual)**
+
+Sebastián Chávarry:
+
+[https://github.com/ulima-arqui-sw/grupo03/tree/reporteIndividual/Sebastian/eventBridge](https://github.com/ulima-arqui-sw/grupo03/tree/reporteIndividual/Sebastian/eventBridge)
+
+Steep Bratzon Salvador Mancisidor
+
+Gustavo Jesus Yupanqui Tarazona
+
+[https://drive.google.com/drive/u/0/folders/1UUd0L4Xn8ehlsvVD6evwjTiR8AaU9TUp](https://drive.google.com/drive/u/0/folders/1UUd0L4Xn8ehlsvVD6evwjTiR8AaU9TUp)
+
+Frank Antonio Caldas Calderon
+
+[https://docs.google.com/document/d/1mcj2ThXojPg\_CcKm6-uoNFFeDGWJ0PtHdqbo8FTghyY/edit?usp=drive\_link](https://docs.google.com/document/d/1mcj2ThXojPg_CcKm6-uoNFFeDGWJ0PtHdqbo8FTghyY/edit?usp=drive_link)
