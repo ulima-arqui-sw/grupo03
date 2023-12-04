@@ -1177,6 +1177,26 @@ Modelo de dominio inicial
 
 Diagramas de secuencias
 
+RF2.1: Filtrar vuelos
+![Alt text](RF2.1_filtrar_vuelos.JPG)
+
+RF2.2: Seleccionar vuelos
+![Alt text](RF2.2_seleccionar_vuelos.JPG)
+
+RF2.3: Seleccionar asiento
+![Alt text](RF2.3_Seleccionar_asiento.JPG)
+
+RF2.4: Llenar información
+![Alt text](RF2.4_Llenar_informaci%C3%B3n.jpg)
+
+RF2.5: Ver datos del vuelo 
+![Alt text](RF2.5_Ver_datos_del_vuelo.jpg)
+
+RF3.1: Pagar boleto
+![Alt text](RF3.1_Pagar_boleto.jpg)
+
+
+
 **Paso 6: Analizar el diseño actual, revisar objetivo de la iteración y logro del propósito del diseño**
 
 ![Iteración 02](iteracion_02.png)
@@ -1209,7 +1229,15 @@ Se refinaron los elementos del módulo de seguridad
 
 **Paso 5: Bosquejar vistas y registrar decisiones de diseño**
 
-Diagramas de secuencia
+**Diagramas de secuencia**
+
+RF1.3: Recibir alertas de seguridad
+![Alt text](RF1.3_Recibir_alertas_de_seguridad.JPG)
+
+RF1.4: Iniciar Sesión
+![Alt text](RF1.4_Iniciar_sesion.png)
+
+
 
 **Paso 6: Analizar el diseño actual, revisar objetivo de la iteración y logro del propósito del diseño**
 
@@ -1218,6 +1246,7 @@ Diagramas de secuencia
 **Aplicación de patrones de Arquitectura**
 
 Para el presente trabajo se ha tomado una arquitectura basada en **Cliente-Servidor.** El cliente vendría a ser la aplicación en Angular y el servidor los servicios desarrollados en Java.
+
 
 **Tópicos en Arquitectura de Software (Componente Individual)**
 
