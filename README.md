@@ -1235,8 +1235,8 @@ RF1.3: Recibir alertas de seguridad
 ![Alt text](RF1.3_Recibir_alertas_de_seguridad.JPG)
 
 RF1.4: Iniciar Sesión
-![Alt text](RF1.4_Iniciar_sesion.png)
-
+![!\[Alt text\](RF1.4_Iniciar_sesion.png)
+](<RF1.4_Iniciar_sesion (1).png>)
 
 
 **Paso 6: Analizar el diseño actual, revisar objetivo de la iteración y logro del propósito del diseño**
